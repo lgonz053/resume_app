@@ -43,12 +43,6 @@ json.skills do
   end
 end
 
-json.capstones do
-  json.array! student.capstones.each do |capstone|
-    json.id capstone.id
-    json.student_id capstone.student_id
-    json.name capstone.name
-    json.description capstone.description
-    json.url capstone.degree
-  end
+json.capstone do
+  json.partial! product.capstone, partial: 'api/capstones/capstone', as: :capstone
 end
