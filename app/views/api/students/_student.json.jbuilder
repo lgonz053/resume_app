@@ -10,3 +10,4 @@ json.personal_blog student.personal_blog
 json.resume_url student.resume_url
 json.github_url student.github_url
 json.photo student.photo
+
