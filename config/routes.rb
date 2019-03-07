@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     post "/sessions" => "sessions#create"
     
     get '/students' => 'students#index'
-    post '/students' => 'students#create'
     get '/students/:id' => 'students#show'
     patch '/students/:id' => 'students#update'
 
@@ -18,6 +17,12 @@ Rails.application.routes.draw do
     get '/experiences/:id' => 'experiences#show'
     patch '/experiences/:id' => 'experiences#update'
     delete '/experiences/:id' => 'experiences#destroy'
+
+    get'/skills' => 'skills#index'
+    post'/skills' => 'skills#create'
+    get '/skills/:id' => 'skills#show'
+    patch '/skills/:id' => 'skills#update'
+    delete '/skills/:id' n=> 'skills#destroy'
 
     get '/capstones' => 'capstones#index'
     post '/capstones' => 'capstones#create'

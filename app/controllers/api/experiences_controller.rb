@@ -1,4 +1,6 @@
 class Api::ExperiencesController < ApplicationController
+  before_action :authenticate_current_student, except: [:index, :show]
+  
   def index
     @experiences = Experience.all
 
