@@ -1,6 +1,8 @@
 class Api::StudentsController < ApplicationController
+  before_action :authenticate_current_student, except: [:index, :show]
+  
   def index
-    @students = Student.all 
+    @students = Student.all
 
     search_terms = params[:search]
     if search_terms
@@ -8,22 +10,6 @@ class Api::StudentsController < ApplicationController
     end
 
     render 'index.json.jbuilder'
-  end
-
-  def create
-    @student = Student.new(
-                            first_name: params[:first_name],
-                            last_name: params[:last_name],
-                            email: params[:email],
-                            phone_number: params[:phone_number],
-                            short_bio: params[:short_bio],
-                            linkedin_url: params[:linkedin_url],
-                            twitter_handle: params[:twitter_handle],
-                            personal_blog: params[:personal_blog],
-                            resume_url: params[:resume_url],
-                            github_url: params[:github_url],
-                            photo: params[:photo]
-                          )
   end
 
   def show
