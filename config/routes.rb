@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     post'/skills' => 'skills#create'
     get '/skills/:id' => 'skills#show'
     patch '/skills/:id' => 'skills#update'
-    delete '/skills/:id' n=> 'skills#destroy'
+    delete '/skills/:id' => 'skills#destroy'
 
     get '/capstones' => 'capstones#index'
     post '/capstones' => 'capstones#create'
