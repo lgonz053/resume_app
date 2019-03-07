@@ -44,6 +44,6 @@ json.skills do
 end
 
 json.capstone do
-  json.partial! product.capstone, partial: 'api/capstones/capstone', as: :capstone
+  json.partial! student.capstone, partial: 'api/capstones/capstone', as: :capstone
 end
 
