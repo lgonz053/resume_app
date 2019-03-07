@@ -2,11 +2,6 @@ class Api::ExperiencesController < ApplicationController
   def index
     @experiences = Experience.all
 
-    search_terms = params[:search]
-    if search_terms
-      @experiences = @experience.where("")
-    end
-
     @experiences = @Experience.order(:id => :asc)
     render 'index.json.jbuilder'
   end
@@ -30,5 +25,26 @@ class Api::ExperiencesController < ApplicationController
   def show
     @experience = Experience.find(params[:id])
     render 'show.json.jbuilder'
+  end
+
+  def update
+    @experience = Experience.find(params[:id])
+
+    @experience.student_id = params[:student_id] || @experience.student_id
+    @experience.start_date = params[:start_date] || @experience.start_date
+    @experience.end_date = params[:end_date] || @experience.end_date
+    @experience.job_title = params[:job_title] || @experience.job_title
+    @experience.company_name = params[:company_name] || @experience.company_name
+    @experience.details = params[:details] || @experience.details
+
+    @experience.save
+    render 'show.json.jbuilder'
+  end
+
+  def destroy
+    experience = Experience.find(params[:id])
+    experience.destroy
+
+    redner json: { message: "Successfully removed experience." }
   end
 end
