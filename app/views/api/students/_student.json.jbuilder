@@ -52,3 +52,4 @@ json.capstones do
     json.url capstone.degree
   end
 end
+
