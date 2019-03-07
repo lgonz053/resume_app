@@ -37,5 +37,5 @@ class Api::SkillsController < ApplicationController
     skill = Skill.find(params[:id])
     skill.update(status: "removed")
     render json: {message: "Successfully removed carted product"} 
-  end 
+  end
 end

@@ -6,6 +6,12 @@ Rails.application.routes.draw do
     get '/students/:id' => 'students#show'
     patch '/students/:id' => 'students#update'
 
+    get '/educations' => 'educations#index'
+    post '/educations' => 'educations#create'
+    get '/educations/:id' => 'educations#show'
+    patch '/educations/:id' => 'educations#update'
+    delete '/educations/:id' => 'educations#destroy'
+
     get '/experiences' => 'experiences#index'
     post '/experiences' => 'experiences#create'
     get '/experiences/:id' => 'experiences#show'
@@ -17,5 +23,11 @@ Rails.application.routes.draw do
     get '/skills/:id' => 'skills#show'
     patch '/skills/:id' => 'skills#update'
     delete '/skills/:id' n=> 'skills#destroy'
+
+    get '/capstones' => 'capstones#index'
+    post '/capstones' => 'capstones#create'
+    get '/capstones/:id' => 'capstones#show'
+    patch '/capstones/:id' => 'capstones#update'
+    delete '/capstones/:id' => 'capstones#destroy'
   end
 end
