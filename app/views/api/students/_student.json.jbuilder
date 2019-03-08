@@ -21,7 +21,7 @@ json.educations do
     json.degree education.degree
     json.university_name education.university_name
     json.details education.details
-  endr
+  end
 end
 
 json.experiences do

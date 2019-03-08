@@ -55,4 +55,5 @@ class Api::ExperiencesController < ApplicationController
     else  
       render json: {errors: @experience.errors.full_messages}, status: :unprocessable_entity
     end
+  end
 end
