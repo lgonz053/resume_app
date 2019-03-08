@@ -1,16 +1,15 @@
 class Api::EducationsController < ApplicationController
-  before_action :authenticate_current_student, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @educations = Education.all
 
-    @educations = @educations.order(:id => :asc)
     render 'index.json.jbuilder'
   end
   
   def create
     @education = Education.new(
-                               student_id: params[:student_id],
+                               student_id: current_student.id,
                                start_date: params[:start_date],
                                end_date: params[:end_date],
                                degree: params[:degree],

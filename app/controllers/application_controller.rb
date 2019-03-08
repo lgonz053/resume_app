@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
           true,
           { algorithm: 'HS256' }
         )
-        student.find_by(id: decoded_token[0]["student_id"])
+        Student.find_by(id: decoded_token[0]["student_id"])
       rescue JWT::ExpiredSignature
         nil
       end
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_student
     unless current_student
+      p current_student
       render json: {}, status: :unauthorized
     end
   end
