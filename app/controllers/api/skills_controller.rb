@@ -1,5 +1,5 @@
 class Api::SkillsController < ApplicationController
-  before_action :authenticate_current_student, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @skills = Skill.all 
@@ -29,8 +29,12 @@ class Api::SkillsController < ApplicationController
 
     @skill.skill = params[:skill] || @skill.skill
 
-    @skill.save
-    render 'show.json.jbuilder'
+    if skill.student_id == current_student.id
+      @skill.save
+      render 'show.json.jbuilder'
+    else  
+      render json: {errors: @skill.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
