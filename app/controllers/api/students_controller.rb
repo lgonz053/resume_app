@@ -33,7 +33,11 @@ class Api::StudentsController < ApplicationController
     @student.photo = params[:photo] || @student.photo
     @student.title = params[:title] || @student.title
 
-    @student.save
-    render 'show.json.jbuilder'
+    if @student.student_id == current_student.id
+      @student.save
+      render 'show.json.jbuilder'
+    else  
+      render json: {errors: @student.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 end

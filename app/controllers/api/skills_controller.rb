@@ -29,7 +29,7 @@ class Api::SkillsController < ApplicationController
 
     @skill.skill = params[:skill] || @skill.skill
 
-    if skill.student_id == current_student.id
+    if @skill.student_id == current_student.id
       @skill.save
       render 'show.json.jbuilder'
     else  
@@ -39,7 +39,12 @@ class Api::SkillsController < ApplicationController
 
   def destroy
     skill = Skill.find(params[:id])
-    skill.update(status: "removed")
-    render json: {message: "Successfully removed carted product"} 
+
+    if @skill.student_id == current_student.id
+      skill.destroy
+      render json: {message: "Successfully removed skill."}
+    else  
+      render json: {errors: @skill.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 end
