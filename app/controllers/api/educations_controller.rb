@@ -48,7 +48,7 @@ class Api::EducationsController < ApplicationController
   def destroy
     education = Education.find(params[:id])
 
-    if @education.student_id == current_student.id
+    if education.student_id == current_student.id
       education.destroy
       render json: {message: "Successfully removed education."}
     else  

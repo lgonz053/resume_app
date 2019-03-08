@@ -40,7 +40,7 @@ class Api::SkillsController < ApplicationController
   def destroy
     skill = Skill.find(params[:id])
 
-    if @skill.student_id == current_student.id
+    if skill.student_id == current_student.id
       skill.destroy
       render json: {message: "Successfully removed skill."}
     else  
