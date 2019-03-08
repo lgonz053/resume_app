@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
           true,
           { algorithm: 'HS256' }
         )
-        student.find_by(id: decoded_token[0]["student_id"])
+        Student.find_by(id: decoded_token[0]["student_id"])
       rescue JWT::ExpiredSignature
         nil
       end
