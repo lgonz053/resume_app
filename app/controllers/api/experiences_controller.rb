@@ -31,7 +31,6 @@ class Api::ExperiencesController < ApplicationController
   def update
     @experience = Experience.find(params[:id])
 
-    @experience.student_id = params[:student_id] || @experience.student_id
     @experience.start_date = params[:start_date] || @experience.start_date
     @experience.end_date = params[:end_date] || @experience.end_date
     @experience.job_title = params[:job_title] || @experience.job_title
@@ -55,4 +54,5 @@ class Api::ExperiencesController < ApplicationController
     else  
       render json: {errors: @experience.errors.full_messages}, status: :unprocessable_entity
     end
+  end
 end

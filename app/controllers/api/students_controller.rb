@@ -33,7 +33,7 @@ class Api::StudentsController < ApplicationController
     @student.photo = params[:photo] || @student.photo
     @student.title = params[:title] || @student.title
 
-    if @student.student_id == current_student.id
+    if @student.id == current_student.id
       @student.save
       render 'show.json.jbuilder'
     else  
