@@ -48,7 +48,7 @@ class Api::ExperiencesController < ApplicationController
   def destroy
     experience = Experience.find(params[:id])
 
-    if @experience.student_id == current_student.id
+    if experience.student_id == current_student.id
       experience.destroy
       render json: { message: "Successfully removed experience." }
     else  
