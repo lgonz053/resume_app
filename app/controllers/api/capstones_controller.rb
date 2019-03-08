@@ -4,7 +4,6 @@ class Api::CapstonesController < ApplicationController
   def index
     @capstones = Capstone.all
 
-    @capstones = @capstones.order(:id => :asc)
     render 'index.json.jbuilder'
   end
   
