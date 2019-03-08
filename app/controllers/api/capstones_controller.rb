@@ -1,5 +1,5 @@
 class Api::CapstonesController < ApplicationController
-  before_action :authenticate_current_student, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @capstones = Capstone.all
@@ -15,11 +15,18 @@ class Api::CapstonesController < ApplicationController
                               description: params[:description],
                               url: params[:url]
                              )
-    if @capstone.save
+    if capstone.student_id == current_student.id
+      @capstone.save
       render 'show.json.jbuilder'
     else
       render json: { errors: @capstone.errors.full_messages }, status: :unprocessable_entity
     end
+
+    # if @capstone.save
+    #   render 'show.json.jbuilder'
+    # else
+    #   render json: { errors: @capstone.errors.full_messages }, status: :unprocessable_entity
+    # end
   end
 
   def show
