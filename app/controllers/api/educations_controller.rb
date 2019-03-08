@@ -38,14 +38,24 @@ class Api::EducationsController < ApplicationController
     @education.university_name = params[:university_name] || @education.university_name
     @education.details = params[:details] || @education.details
 
-    @education.save
-    render 'show.json.jbuilder'
+    if @education.student_id == current_student.id
+      @education.save
+      render 'show.json.jbuilder'
+    else  
+      render json: {errors: @education.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
     education = Education.find(params[:id])
-    education.destroy
 
-    render json: {message: "Successfully removed education."}
+    if @education.student_id == current_student.id
+      education.destroy
+      render json: {message: "Successfully removed education."}
+    else  
+      render json: {errors: @education.errors.full_messages}, status: :unprocessable_entity
+    end
+
+
   end
 end

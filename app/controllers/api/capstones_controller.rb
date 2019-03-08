@@ -9,23 +9,17 @@ class Api::CapstonesController < ApplicationController
   
   def create
     @capstone = Capstone.new(
-                              student_id: params[:student_id],
+                              student_id: current_student.id,
                               name: params[:name],
                               description: params[:description],
                               url: params[:url]
                              )
-    if capstone.student_id == current_student.id
-      @capstone.save
+
+    if @capstone.save 
       render 'show.json.jbuilder'
     else
       render json: { errors: @capstone.errors.full_messages }, status: :unprocessable_entity
     end
-
-    # if @capstone.save
-    #   render 'show.json.jbuilder'
-    # else
-    #   render json: { errors: @capstone.errors.full_messages }, status: :unprocessable_entity
-    # end
   end
 
   def show
@@ -41,14 +35,23 @@ class Api::CapstonesController < ApplicationController
     @capstone.description = params[:description] || @capstone.description
     @capstone.url = params[:url] || @capstone.url
 
-    @capstone.save
-    render 'show.json.jbuilder'
+    if @capstone.student_id == current_student.id
+      @capstone.save
+      render 'show.json.jbuilder'
+    else  
+      render json: {errors: @capstone.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
     capstone = Capstone.find(params[:id])
-    capstone.destroy
 
-    render json: {message: "Successfully removed capstone."}
+    if @capstone.student_id == current_student.id
+      capstone.destroy
+      render json: {message: "Successfully removed capstone."}
+    else  
+      render json: {errors: @capstone.errors.full_messages}, status: :unprocessable_entity
+    end
+
   end
 end
