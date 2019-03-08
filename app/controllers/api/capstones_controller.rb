@@ -45,7 +45,7 @@ class Api::CapstonesController < ApplicationController
   def destroy
     capstone = Capstone.find(params[:id])
 
-    if @capstone.student_id == current_student.id
+    if capstone.student_id == current_student.id
       capstone.destroy
       render json: {message: "Successfully removed capstone."}
     else  
