@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
             student_id: student.id, # the data to encode
             exp: 24.hours.from_now.to_i # the expiration time
           },
-          'butter',# Rails.application.credentials.fetch(:secret_key_base), # the secret key
+          Rails.application.credentials.fetch(:secret_key_base), # the secret key
           'HS256' # the encryption algorithm
         )
         render json: {jwt: jwt, email: student.email, student_id: student.id}, status: :created
