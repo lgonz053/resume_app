@@ -30,7 +30,6 @@ class Api::CapstonesController < ApplicationController
   def update
     @capstone = Capstone.find(params[:id])
 
-    @capstone.student_id = params[:student_id] || @capstone.student_id
     @capstone.name = params[:name] || @capstone.name
     @capstone.description = params[:description] || @capstone.description
     @capstone.url = params[:url] || @capstone.url
@@ -52,6 +51,5 @@ class Api::CapstonesController < ApplicationController
     else  
       render json: {errors: @capstone.errors.full_messages}, status: :unprocessable_entity
     end
-
   end
 end

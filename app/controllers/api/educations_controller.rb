@@ -31,7 +31,6 @@ class Api::EducationsController < ApplicationController
   def update
     @education = Education.find(params[:id])
 
-    @education.student_id = params[:student_id] || @education.student_id
     @education.start_date = params[:start_date] || @education.start_date
     @education.end_date = params[:end_date] || @education.end_date
     @education.degree = params[:degree] || @education.degree
@@ -55,7 +54,5 @@ class Api::EducationsController < ApplicationController
     else  
       render json: {errors: @education.errors.full_messages}, status: :unprocessable_entity
     end
-
-
   end
 end
