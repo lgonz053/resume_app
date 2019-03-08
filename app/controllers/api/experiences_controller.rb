@@ -1,10 +1,9 @@
 class Api::ExperiencesController < ApplicationController
-  before_action :authenticate_current_student, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
   
   def index
     @experiences = Experience.all
 
-    @experiences = @Experience.order(:id => :asc)
     render 'index.json.jbuilder'
   end
 

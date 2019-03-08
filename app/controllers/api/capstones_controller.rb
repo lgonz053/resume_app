@@ -1,10 +1,9 @@
 class Api::CapstonesController < ApplicationController
-  before_action :authenticate_current_student, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @capstones = Capstone.all
 
-    @capstones = @capstones.order(:id => :asc)
     render 'index.json.jbuilder'
   end
   
