@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
 
   def authenticate_student
     unless current_student
-      p current_student
       render json: {}, status: :unauthorized
     end
   end
