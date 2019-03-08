@@ -29,7 +29,7 @@ class Api::SkillsController < ApplicationController
 
     @skill.skill = params[:skill] || @skill.skill
 
-    if skill.student_id == current_student.id
+    if @skill.student_id == current_student.id
       @skill.save
       render 'show.json.jbuilder'
     else  
