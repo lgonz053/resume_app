@@ -10,6 +10,7 @@ json.personal_blog student.personal_blog
 json.resume_url student.resume_url
 json.github_url student.github_url
 json.photo student.photo
+json.title student.title
 
 json.educations do
   json.array! student.educations.each do |education|
