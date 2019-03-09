@@ -1,4 +1,4 @@
-g# Be sure to restart your server when you modify this file.
+# Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
 # Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
@@ -7,7 +7,7 @@ g# Be sure to restart your server when you modify this file.
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:8080', 'example.com', 'https://ecstatic-golick-53422d.netlify.com', 'https://compassionate-wright-72e7d7.netlify.com'
+    origins 'localhost:8080', 'example.com', 'https://ecstatic-golick-53422d.netlify.com', 'kill-nil-portal.netlify.com'
 
     resource '*',
       headers: :any,
